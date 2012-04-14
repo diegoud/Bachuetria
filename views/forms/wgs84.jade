@@ -1,0 +1,33 @@
+//Vista de Formulario de Entrada de Datos WGS 84
+
+h2=title
+form
+  // Muestra el Formulario que tiene un atributo asociado for que relaciona semanticamente los labels y los inputs
+  p 
+    label(for='estacion') Nombre Estación:
+    input(name='estacion', type='text')
+  p 
+    label(for='latitud') Latitud (fi):
+    input(name='latitud', type='text')
+  p 
+    label(for='longitud') Longitud (Lambda):
+    input(name='longitud', type='text')
+  p
+    label(for='alturaElipsoidal') Altura Elipsoidal (h):
+    input(name='alturaElipsoidal', type='text')
+  p
+    label(for='descripcion') Descripcion:
+    textarea(name='descripcion', type='text')
+  p
+    input(type='button', value='Calcular:', id='botonCalcular', onclick='calcularWgs84()')
+
+script(type='text/javascript')
+  function calcularWgs84(){
+    $.ajax({
+      url: '/wgs84/realizarCalculo',
+      dataType:'json',
+      success: function(data){
+        alert(data);
+      }
+    });
+  } 
